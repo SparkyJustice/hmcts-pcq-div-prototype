@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['respondent'] == 'true' %} 
+        <form action="./gender?respondent=true&" method="post" novalidate>  
+      {% else %}
+        <form action="./gender?respondent=false&" method="post" novalidate>
+      {% endif %}
+
+        <span class="govuk-caption-xl">Equality monitoring</span>
+        <h1 class="govuk-heading-l">What is your sex?</h1>
+
+        {{ govukDetails({
+          summaryText: "How we protect your data",
+          text: "Your sex will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely for 2 years in line with our privacy policy. "
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "what-is-your-sex",
+          name: "what-is-your-sex",
+          items: [
+            {
+              value: "male",
+              text: "Male"
+            },
+            {
+              value: "female",
+              text: "Female"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+           text: "Continue to next question"
+        }) }}
+            <br>
+            
+        {% if data['respondent'] == 'true' %} 
+            <a href="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" class="govuk-link">Cancel and return to response information</a>
+        {% else %}
+            <a href="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

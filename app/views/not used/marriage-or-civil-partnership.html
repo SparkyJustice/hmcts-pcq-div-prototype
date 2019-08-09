@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     {% if data['respondent'] == 'true' %} 
+        <form action="./ethnicity?respondent=true" method="post" novalidate>  
+      {% else %}
+        <form action="./ethnicity?respondent=false" method="post" novalidate>
+      {% endif %}
+
+
+        {{ govukRadios({
+          idPrefix: "marriage-or-civil-partnership",
+          name: "marriage-or-civil-partnership",
+          fieldset: {
+            legend: {
+              text: "Are you married or in a legally registered civil partnership?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+         <br>
+
+         {% if data['respondent'] == 'true' %} 
+            <a href="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" class="govuk-link">Cancel and return to response information</a>
+        {% else %}
+            <a href="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+
+   
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

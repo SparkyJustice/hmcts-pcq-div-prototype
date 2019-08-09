@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['tasklist'] == 'true' %}
+   
+        {% if data['respondent'] == 'true' %} 
+          <form action="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" method="post" novalidate>  
+        {% else %}
+          <form action="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" method="post" novalidate>
+        {% endif %}
+        
+      {% else %}
+
+        {% if data['respondent'] == 'true' %} 
+          <form action="thank-you?respondent=true" method="post" novalidate>  
+        {% else %}
+          <form action="thank-you?respondent=false" method="post" novalidate>
+        {% endif %}
+
+      {% endif %}
+
+
+     <h1 class="govuk-heading-l">Submit your answers</h1>
+
+      <p>When you submit your answers, you agree that we can collect and process this information. We’ll use it to help us meet our commitment to equality (under the Equality Act 2010).</p>
+      <p>You can withdraw your consent or change your answers at any time.</p>
+      <p>Read our <a href="https://www.moneyclaims.service.gov.uk/privacy-policy" target="_blank"> privacy policy</a> for more information.
+      </p>    
+      
+      <br>
+      <br>
+     {{ govukButton({
+        text: "Agree and Submit"
+      }) }}
+
+      </form>
+    </div>
+</div>
+
+{% endblock %}

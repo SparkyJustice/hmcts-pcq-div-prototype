@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['respondent'] == 'true' %} 
+        <form action="./education?respondent=true&" method="post" novalidate>  
+      {% else %}
+        <form action="./education?respondent=false&" method="post" novalidate>
+      {% endif %}
+
+        {{ govukRadios({
+          idPrefix: "income",
+          name: "income",
+          fieldset: {
+            legend: {
+              text: "Which of these represents your personal income before tax?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "under-5000",
+              text: "Under £5,000"
+            },
+            {
+              value: "5000-9999",
+              text: "£5,000 - £9,999"
+            },
+            {
+              value: "10000-14999",
+              text: "£10,000 - £14,999"
+            },
+            {
+              value: "15000-19999",
+              text: "£15,000 - £19,999"
+            },
+            {
+              value: "20000-24999",
+              text: "£20,000 - £24,999"
+            },
+            {
+              value: "25000-29999",
+              text: "£25,000 - £29,999"
+            },
+            {
+              value: "30000-34999",
+              text: "£30,000 - £34,999"
+            },
+            {
+              value: "35000-39999",
+              text: "£35,000 - £39,999"
+            },
+            {
+              value: "40000-or-over",
+              text: "£40,000 or over"
+            },
+            {
+              value: "nothing",
+              text: "Nothing"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+         <br>
+         {% if data['respondent'] == 'true' %} 
+            <a href="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" class="govuk-link">Cancel and return to response information</a>
+        {% else %}
+            <a href="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+   
+      {% if data['respondent'] == 'true' %} 
+        <form action="./education?respondent=true" method="post" novalidate>  
+      {% else %}
+        <form action="./education?respondent=false" method="post" novalidate>
+      {% endif %}
+
+
+        {{ govukRadios({
+          idPrefix: "are-you-pregnant",
+          name: "are-you-pregnant",
+          fieldset: {
+            legend: {
+              text: "Are you currently pregnant or have you been pregnant in the last year?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        <br> 
+        
+         {% if data['respondent'] == 'true' %} 
+            <a href="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" class="govuk-link">Cancel and return to response information</a>
+        {% else %}
+            <a href="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

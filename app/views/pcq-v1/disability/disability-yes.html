@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "../disability.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     {% if data['respondent'] == 'true' %} 
+       <form action="/pcq-v1/respondent-disability-details" method="post" novalidate>
+      {% else %}
+        <form action="/pcq-v1/applicant-disability-details" method="post" novalidate>
+      {% endif %}
+
+        <span class="govuk-caption-xl">Equality monitoring</span>
+        <h1 class="govuk-heading-l">Do any of your conditions or illnesses reduce your ability to carry out day-to day activities?</h1>
+
+        {{ govukDetails({
+          summaryText: "How we protect your data",
+          text: "Your disability will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely for 2 years in line with our privacy policy. "
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "disability-yes",
+          name: "disability-yes",
+        
+        items: [
+            {
+              value: "Yes, limited a little",
+              text: "Yes, limited a little"
+            },
+            {
+              value: "Yes, limited a lot",
+              text: "Yes, limited a lot"
+            },
+            {
+              value: "Not at all",
+              text: "Not at all"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+
+          }) }}
+
+        {{ govukButton({
+          text: "Continue to next question"
+        }) }}
+
+        <br>
+         
+         {% if data['respondent'] == 'true' %} 
+            <a href="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" class="govuk-link">Cancel and return to response information</a>
+        {% else %}
+            <a href="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

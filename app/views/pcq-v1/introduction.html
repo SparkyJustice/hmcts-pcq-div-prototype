@@ -1,0 +1,83 @@
+
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "/contact"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "input/macro.njk" import govukInput %}
+      {% from "fieldset/macro.njk" import govukFieldset %}
+      {% from "radios/macro.njk" import govukRadios %}
+      {% from "details/macro.njk" import govukDetails %}
+
+      {% if data['respondent'] == 'true' %} 
+        <form action="/pcq-v1/applicant/equality-opt-in" method="post" novalidate>  
+      {% else %}
+        <form action="/pcq-v1/applicant/equality-opt-in" method="post" novalidate>
+      {% endif %}
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+        <span class="govuk-caption-xl">Equality monitoring</span>
+
+        {% call govukFieldset({
+          legend: {
+            text: "Can we ask you some equality questions?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        }) %}
+
+        <p class="govuk-body">This is not part of your divorce petition and will not affect it.</p>
+        <p class="govuk-body">There are 7 questions. </p>
+
+        {% from "details/macro.njk" import govukDetails %}
+
+        {{ govukDetails({
+          summaryText: "How this information will be used",
+          text: "The information collected will be anonymous (exclude personal details) and government researchers will use it to understand how people from different groups use and experience our services."
+        }) }}
+
+          {{ govukRadios({
+            idPrefix: "equality-information",
+            name: "equality-information",
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+        {% endcall %}
+
+
+        {{ govukButton({
+          text: "Continue to next question"
+        }) }}
+
+
+      </form>
+
+    </div>
+</div>
+
+{% endblock %}

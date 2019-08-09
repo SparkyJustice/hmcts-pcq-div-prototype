@@ -1,0 +1,96 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['respondent'] == 'true' %} 
+        <form action="../religion?respondent=true&" method="post" novalidate>  
+      {% else %}
+        <form action="../religion?respondent=false&" method="post" novalidate>
+      {% endif %}  
+
+        {% from "radios/macro.njk" import govukRadios %}
+        {% from "input/macro.njk" import govukInput %}
+
+        {% set mixedOtherHtml %}
+          {{ govukInput({
+            id: "ethnicity-white-other",
+            name: "ethnicity-white-other",
+            classes: "govuk-!-width-two-thirds",
+            label: {
+              text: "Your Mixed background (optional)"
+            }
+          }) }}
+        {% endset -%}
+
+         <span class="govuk-caption-xl">Equality monitoring</span>
+         <h1 class="govuk-heading-l">Which one best describes your Mixed or Multiple ethnic groups background?</h1>
+
+        {{ govukDetails({
+          summaryText: "How we protect your data",
+          text: "Your ethnicity will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely for 2 years in line with our privacy policy. "
+        }) }}
+        
+        {{ govukRadios({
+          idPrefix: "ethnic-group",
+          name: "ethnic-group",
+          items: [
+            {
+              text: "Asian and White"
+            },
+            {
+              text: "Black African and White"
+            },    
+            {
+              text: "Black Caribbean and White"
+            },
+            {
+              text: "Another Mixed background",
+              conditional: {
+                html: mixedOtherHtml
+              }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+            <br>
+            {{ govukButton({
+              text: "Continue to next question"
+            }) }}
+            <br>
+
+        {% if data['respondent'] == 'true' %} 
+            <a href="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" class="govuk-link">Cancel and return to response information</a>
+        {% else %}
+            <a href="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+
+
+      </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "button/macro.njk" import govukButton %}
+{% from "panel/macro.njk" import govukPanel %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+      <p class="govuk-heading-l">That’s the end of the equality monitoring questions.</p>
+      <p class="govuk-body">Thanks for taking part.</p>
+
+<!--      
+      {% if data['respondent'] == 'true' %} 
+       
+        <p>If you need help with any part of your response or you need <a href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/equality-and-diversity" class="govuk-link" target="_blank">information in a different format</a> contact us.</p>
+      {% else %}
+        <p>If you need help with any part of your claim or you need <a href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/equality-and-diversity" class="govuk-link" target="_blank">information in a different format</a> contact us.</p>
+      {% endif %}
+-->
+      <br>
+
+        {% if data['respondent'] == 'true' %} 
+          {{ govukButton({
+            text: "Return to finish your petition",
+            href: "https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder"
+           }) }}
+         
+        {% else %}
+           {{ govukButton({
+            text: "Return to finish your petition",
+            href: "https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder"
+           }) }}
+         
+        {% endif %}
+
+      <br>
+<!--
+      {{ govukDetails({
+        summaryText: "Contact us for help",
+        html: "<h2 class=govuk-heading-m\" style=\"margin-bottom:0\">Email</h2>
+          <p>
+            <a href=\"/prototypes/prototype-may-2019/misc/message\" target=\"_blank\">Send us a message</a> (opens in a new window)<br>
+            We'll get back to you within 10 days
+          </p>
+
+          <h2 class=\"govuk-heading-m\" style=\"margin-bottom:0; margin-top: 10px;\">Telephone</h2>
+          <p>0300 123 7050<br>
+            Monday to Friday, 9.00am to 5.00pm
+          </p>"
+
+      }) }}
+
+ -->     
+     
+    </div>
+</div>
+
+{% endblock %}
