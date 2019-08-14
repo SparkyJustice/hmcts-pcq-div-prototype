@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "button/macro.njk" import govukButton %}
@@ -14,40 +18,32 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% if data['respondent'] == 'true' %} 
-        <form action="./sex?respondent=true" method="post" novalidate>  
+        <form action="./thank-you?respondent=true&" method="post" novalidate>  
       {% else %}
-        <form action="./sex?respondent=false" method="post" novalidate>
+        <form action="./thank-you?respondent=false&" method="post" novalidate>
       {% endif %}
 
-         <span class="govuk-caption-xl">Equality monitoring</span>
-         <h1 class="govuk-heading-l">How well can you speak English?</h1>
+        <span class="govuk-caption-xl">Equality monitoring</span>
+        <h1 class="govuk-heading-l">Are you currently pregnant or have you been pregnant in the last year?</h1>
 
         {{ govukDetails({
           summaryText: "How we protect your data",
           text: "Your information will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely in line with our privacy policy. "
         }) }}
 
-
         {{ govukRadios({
-          idPrefix: "english-level",
-          name: "english-level",
+          idPrefix: "are-you-pregnant",
+          name: "are-you-pregnant",
           items: [
             {
-              value: "very-well",
-              text: "Very well"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "well",
-              text: "Well"
-            },
-            {
-              value: "not-well",
-              text: "Not well"
-            },
-            {
-              value: "not-at-all",
-              text: "Not at all"
+              value: "no",
+              text: "No"
             },
             {
               divider: "or"
@@ -60,17 +56,15 @@
         }) }}
 
         {{ govukButton({
-          text: "Continue to next question"
-          
+           text: "Finish questions"
         }) }}
-         <br>
-        
-         {% if data['respondent'] == 'true' %} 
+            <br>
+            
+        {% if data['respondent'] == 'true' %} 
             <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link">Cancel and return to petition response</a>
         {% else %}
             <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link">Cancel and return to petition</a>
         {% endif %}
-      
 
       </form>
     </div>

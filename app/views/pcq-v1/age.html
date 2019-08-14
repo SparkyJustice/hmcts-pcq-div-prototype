@@ -6,8 +6,10 @@
 
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
-{% from "button/macro.njk" import govukButton %}
+{% from "button/macro.njk" import govukButton %} 
+{% from "date-input/macro.njk" import govukDateInput %}
 {% from "details/macro.njk" import govukDetails %}
+
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -20,41 +22,43 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% if data['respondent'] == 'true' %} 
-      session.serviceName = "Respond to a divorce application"
-        <form action="./gender?respondent=true&" method="post" novalidate>  
+        <form action="./language?respondent=true&" method="post" novalidate>  
       {% else %}
-        <form action="./gender?respondent=false&" method="post" novalidate>
+        <form action="./language?respondent=false&" method="post" novalidate>
       {% endif %}
 
         <span class="govuk-caption-xl">Equality monitoring</span>
-        <h1 class="govuk-heading-l">What is your sex?</h1>
+        <h1 class="govuk-heading-l">What is your date of birth?</h1>
 
-        {{ govukDetails({
-          summaryText: "How we protect your data",
-          text: "Your information will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely in line with our privacy policy. "
-        }) }}
+      {{ govukDateInput({
+        id: "dob",
+        namePrefix: "dob",
+        hint: {
+          text: "For example, 12 11 2007"
+        }
+      }) }}
+
+        <p>or</p>
 
         {{ govukRadios({
-          idPrefix: "what-is-your-sex",
-          name: "what-is-your-sex",
+          classes: "govuk-radios--inline",
+          idPrefix: "prefer-not-to-say",
+          name: "prefer-not-to-say",
           items: [
-            {
-              value: "male",
-              text: "Male"
-            },
-            {
-              value: "female",
-              text: "Female"
-            },
-            {
-              divider: "or"
-            },
             {
               value: "prefer-not-to-say",
               text: "Prefer not to say"
             }
           ]
+        })
+        }}
+
+
+        {{ govukDetails({
+          summaryText: "How we protect your data",
+          text: "Your date of birth will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely in line with our privacy policy. "
         }) }}
+
 
         {{ govukButton({
            text: "Continue to next question"

@@ -3,6 +3,7 @@
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "button/macro.njk" import govukButton %}
+{% from "details/macro.njk" import govukDetails %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -26,7 +27,7 @@
           name: "english-language-other",
           classes: "govuk-!-width-two-thirds",
           label: {
-            text: "Please enter your main language (including British Sign Language)"
+            text: "Enter your main language (including British Sign Language)"
           }
         }) }}
         {% endset %}
@@ -37,7 +38,7 @@
 
         {{ govukDetails({
           summaryText: "How we protect your data",
-          text: "Your language will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely for 2 years in line with our privacy policy. "
+          text: "Your information will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely in line with our privacy policy. "
         }) }}
 
         {{ govukRadios({
@@ -67,13 +68,13 @@
         }) }}
 
         {{ govukButton({
-          text: "Finish questions"
+          text: "Continue to next question"
         }) }}
         <br>
          {% if data['respondent'] == 'true' %} 
-            <a href="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" class="govuk-link">Cancel and return to response information</a>
+            <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link">Cancel and return to petition response</a>
         {% else %}
-            <a href="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" class="govuk-link">Cancel and return to claim information</a>
+            <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link">Cancel and return to petition</a>
         {% endif %}
 
       </form>

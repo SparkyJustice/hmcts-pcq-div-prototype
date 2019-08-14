@@ -13,9 +13,9 @@ router.post('/pcq-v1/applicant/equality-opt-in', function (req, res) {
   let equalityInformation = req.session.data['equality-information']
 
   if (equalityInformation == 'yes') {
-    res.redirect('/pcq-v1/ethnicity?respondent=false&')
+    res.redirect('/pcq-v1/age?respondent=false&')
   } else {
-    res.redirect('/applicant-placeholder')
+    res.redirect('https://div-pcq-prototype-master.herokuapp.com/check-your-answers')
   }
 
 })
@@ -24,9 +24,33 @@ router.post('/pcq-v1/respondent/equality-opt-in', function (req, res) {
   let equalityInformation = req.session.data['equality-information']
 
   if (equalityInformation == 'yes') {
-    res.redirect('/pcq-v1/ethnicity?respondent=true&')
+    res.redirect('/pcq-v1/age?respondent=true&')
   } else {
-    res.redirect('/respondent-placeholder')
+    res.redirect('https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers')
+  }
+
+})
+// add this determine sex so that there is an option to skip pregnancy Q
+
+router.post('/pcq-v1/applicant/sex', function (req, res) {
+
+  let whatIsYourSex = req.session.data['what-is-your-sex']
+
+  if (whatIsYourSex == 'female') {
+    res.redirect('/pcq-v1/sexual-orientation?respondent=false&sex=female')
+  } else {
+    res.redirect('/pcq-v1/sexual-orientation?respondent=false&sex=male')
+  }
+
+})
+router.post('/pcq-v1/respondent/sex', function (req, res) {
+
+  let whatIsYourSex = req.session.data['what-is-your-sex']
+
+  if (whatIsYourSex == 'female') {
+    res.redirect('/pcq-v1/sexual-orientation?respondent=true&sex=female')
+  } else {
+    res.redirect('/pcq-v1/sexual-orientation?respondent=true&sex=male')
   }
 
 })
@@ -37,7 +61,7 @@ router.post('/pcq-v1/applicant-disability-answer', function (req, res) {
   if (disabilityInformation == 'Yes') {
     res.redirect('/pcq-v1/disability/disability-yes?respondent=false&')
   } else {
-    res.redirect('/pcq-v1/sex?respondent=false&')
+    res.redirect('/pcq-v1/pregnancy?respondent=false&')
   }
 
 })
@@ -48,7 +72,7 @@ router.post('/pcq-v1/respondent-disability-answer', function (req, res) {
   if (disabilityInformation == 'Yes') {
     res.redirect('/pcq-v1/disability/disability-yes?respondent=true&')
   } else {
-    res.redirect('/pcq-v1/sex?respondent=true&')
+    res.redirect('/pcq-v1/pregnancy?respondent=true&')
   }
 
 })
@@ -61,7 +85,7 @@ router.post('/pcq-v1/applicant-disability-details', function (req, res) {
     res.redirect('/pcq-v1/disability/disability-yes-detail?respondent=false&')
   }
   else {
-    res.redirect('/pcq-v1/sex?respondent=false&')
+    res.redirect('/pcq-v1/pregnancy?respondent=false&')
   }
 
 })
@@ -74,7 +98,7 @@ router.post('/pcq-v1/respondent-disability-details', function (req, res) {
     res.redirect('/pcq-v1/disability/disability-yes-detail?respondent=true&')
   }
   else {
-    res.redirect('/pcq-v1/sex?respondent=true&')
+    res.redirect('/pcq-v1/pregnancy?respondent=true&')
   }
 
 })
@@ -129,7 +153,7 @@ router.post('/pcq-v1/respondent-language', function (req, res) {
     res.redirect('/pcq-v1/english-level?respondent=true&')
   }
   else {
-    res.redirect('/pcq-v1/religion?respondent=true&')
+    res.redirect('/pcq-v1/sex?respondent=true&')
   }
 })
 
@@ -141,7 +165,7 @@ router.post('/pcq-v1/applicant-language', function (req, res) {
     res.redirect('/pcq-v1/english-level?respondent=false&')
   }
   else {
-    res.redirect('/pcq-v1/religion?respondent=false&')
+    res.redirect('/pcq-v1/sex?respondent=false&')
   }
 })
 

@@ -20,7 +20,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
  
-      <p class="govuk-heading-l">That’s the end of the equality monitoring questions.</p>
+      <p class="govuk-heading-l">That’s the end of the equality questions</p>
       <p class="govuk-body">Thanks for taking part.</p>
 
 <!--      
@@ -35,14 +35,14 @@
 
         {% if data['respondent'] == 'true' %} 
           {{ govukButton({
-            text: "Return to finish your petition",
-            href: "https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder"
+            text: "Return to finish your petition response",
+            href: "https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers"
            }) }}
          
         {% else %}
            {{ govukButton({
             text: "Return to finish your petition",
-            href: "https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder"
+            href: "https://div-pcq-prototype-master.herokuapp.com/check-your-answers"
            }) }}
          
         {% endif %}

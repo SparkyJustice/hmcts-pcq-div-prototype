@@ -30,27 +30,23 @@
         <form action="/pcq-v1/applicant/equality-opt-in" method="post" novalidate>
       {% endif %}
 
-        {% from "radios/macro.njk" import govukRadios %}
-
         <span class="govuk-caption-xl">Equality monitoring</span>
 
         {% call govukFieldset({
           legend: {
-            text: "Can we ask you some equality questions?",
+            text: "Equality questions",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         }) %}
 
-        <p class="govuk-body">This is not part of your divorce petition and will not affect it.</p>
-        <p class="govuk-body">There are 7 questions. </p>
+        <p class="govuk-body">We’d like to ask you some questions about yourself to help us check that we’re treating people equally and fairly.</p>
+        <p class="govuk-body">There are 9 questions.</p>
 
-        {% from "details/macro.njk" import govukDetails %}
+        <p class="govuk-body">You don't have to answer them.</p>
 
-        {{ govukDetails({
-          summaryText: "How this information will be used",
-          text: "The information collected will be anonymous (exclude personal details) and government researchers will use it to understand how people from different groups use and experience our services."
-        }) }}
+        <p class="govuk-body">The questions are not part of your divorce petition and will not affect it.</p>
+
 
           {{ govukRadios({
             idPrefix: "equality-information",
@@ -71,7 +67,12 @@
 
 
         {{ govukButton({
-          text: "Continue to next question"
+          text: "Continue"
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "How this information will be used",
+          text: "The information collected will not include personal details (will be anonymised). Government researchers will use it to understand how people from different groups use and experience our services."
         }) }}
 
 

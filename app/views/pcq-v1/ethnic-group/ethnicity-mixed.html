@@ -6,7 +6,10 @@
 {% endblock %}
 
 {% from "back-link/macro.njk" import govukBackLink %}
-
+{% from "details/macro.njk" import govukDetails %}
+{% from "input/macro.njk" import govukInput %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "radios/macro.njk" import govukRadios %}
 {% block beforeContent %}
 
   {{ govukBackLink({
@@ -26,9 +29,6 @@
         <form action="../religion?respondent=false&" method="post" novalidate>
       {% endif %}  
 
-        {% from "radios/macro.njk" import govukRadios %}
-        {% from "input/macro.njk" import govukInput %}
-
         {% set mixedOtherHtml %}
           {{ govukInput({
             id: "ethnicity-white-other",
@@ -45,7 +45,7 @@
 
         {{ govukDetails({
           summaryText: "How we protect your data",
-          text: "Your ethnicity will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely for 2 years in line with our privacy policy. "
+          text: "Your ethnicity will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely in line with our privacy policy. "
         }) }}
         
         {{ govukRadios({
@@ -83,9 +83,9 @@
             <br>
 
         {% if data['respondent'] == 'true' %} 
-            <a href="https://div-pcq-prototype-master.herokuapp.com/respondent-placeholder" class="govuk-link">Cancel and return to response information</a>
+            <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link">Cancel and return to petition response</a>
         {% else %}
-            <a href="https://div-pcq-prototype-master.herokuapp.com/applicant-placeholder" class="govuk-link">Cancel and return to claim information</a>
+            <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link">Cancel and return to petition</a>
         {% endif %}
 
 
