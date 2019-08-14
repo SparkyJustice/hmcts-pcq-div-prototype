@@ -25,9 +25,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% if data['respondent'] == 'true' %} 
-       <form action="../sex?respondent=true&" method="post" novalidate>
+       <form action="../pregnancy?respondent=true&" method="post" novalidate>
       {% else %}
-        <form action="../sex?respondent=false&" method="post" novalidate>
+        <form action="../pregnancy?respondent=false&" method="post" novalidate>
       {% endif %}
 
         
@@ -46,10 +46,6 @@
          <span class="govuk-caption-xl">Equality monitoring</span>
          <h1 class="govuk-heading-l">Do any of these conditions or illnesses affect you in any of the following areas?</h1>
 
-        {{ govukDetails({
-          summaryText: "How we protect your data",
-          text: "Your information will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely in line with our privacy policy. "
-        }) }}
 
         {{ govukCheckboxes({
           idPrefix: "disability-options",

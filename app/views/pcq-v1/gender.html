@@ -40,10 +40,6 @@
         <span class="govuk-caption-xl">Equality monitoring</span>
         <h1 class="govuk-heading-l">Is your gender the same as the sex you were registered at birth?</h1>
 
-        {{ govukDetails({
-          summaryText: "How we protect your data",
-          text: "Your gender will be stored separately from other personal details, like your name, so it’s not possible to identify you. It will be stored securely in line with our privacy policy. "
-        }) }}
         {{ govukRadios({
           idPrefix: "gender-same-as-birth",
           name: "gender-same-as-birth",

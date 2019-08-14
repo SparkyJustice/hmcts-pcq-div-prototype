@@ -31,14 +31,8 @@
       {% endif %}
 
         <span class="govuk-caption-xl">Equality monitoring</span>
+        <h1 class="govuk-heading-l">Equality questions</h1>
 
-        {% call govukFieldset({
-          legend: {
-            text: "Equality questions",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        }) %}
 
         <p class="govuk-body">We’d like to ask you some questions about yourself to help us check that we’re treating people equally and fairly.</p>
         <p class="govuk-body">There are 9 questions.</p>
@@ -46,35 +40,24 @@
         <p class="govuk-body">You don't have to answer them.</p>
 
         <p class="govuk-body">The questions are not part of your divorce petition and will not affect it.</p>
-
-
-          {{ govukRadios({
-            idPrefix: "equality-information",
-            name: "equality-information",
-            items: [
-              {
-                value: "yes",
-                text: "Yes"
-              },
-              {
-                value: "no",
-                text: "No"
-              }
-            ]
-          }) }}
-
-        {% endcall %}
-
+      
+        {{ govukDetails({
+          summaryText: "How this information will be used",
+          text: "The information we collect will not include your personal details. Government researchers will use it to understand how people from different groups use and experience our services. Your answers will be stored separately from other personal details like your name, so it’s not possible to identify you. It will be stored securely in line with our privacy policy."
+        }) }}
+       
 
         {{ govukButton({
           text: "Continue"
         }) }}
 
-        {{ govukDetails({
-          summaryText: "How this information will be used",
-          text: "The information collected will not include personal details (will be anonymised). Government researchers will use it to understand how people from different groups use and experience our services."
-        }) }}
+        <br>
 
+       {% if data['respondent'] == 'true' %} 
+            <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link">Cancel and return to petition response</a>
+        {% else %}
+            <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link">Cancel and return to petition</a>
+        {% endif %}
 
       </form>
 
