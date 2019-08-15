@@ -25,9 +25,9 @@
       {% from "details/macro.njk" import govukDetails %}
 
       {% if data['respondent'] == 'true' %} 
-        <form action="/pcq-v1/applicant/equality-opt-in" method="post" novalidate>  
+        <form action="./age?respondent=true&" method="post" novalidate>  
       {% else %}
-        <form action="/pcq-v1/applicant/equality-opt-in" method="post" novalidate>
+        <form action="./age?respondent=fasle&" method="post" novalidate>
       {% endif %}
 
         <span class="govuk-caption-xl">Equality monitoring</span>
