@@ -53,7 +53,7 @@ Import the phase-banner component and supply tag and feedback text. The phase ba
       tag: {
         text: "alpha"
       },
-      html: 'This is a new service - your <a href="#" class="govuk-link">feedback</a> will help us to improve it.'
+      html: 'This is a new service - your <a href="#" class="govuk-link govuk-!-font-size-19">feedback</a> will help us to improve it.'
     }) }}
 
 ### How to include a Beta banner
@@ -64,5 +64,5 @@ Import the phase-banner component and supply tag and feedback text. The phase ba
       tag: {
         text: "beta"
       },
-      html: 'This is a new service - your <a href="#" class="govuk-link">feedback</a> will help us to improve it.'
+      html: 'This is a new service - your <a href="#" class="govuk-link govuk-!-font-size-19">feedback</a> will help us to improve it.'
     }) }}

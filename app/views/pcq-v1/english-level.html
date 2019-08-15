@@ -20,7 +20,7 @@
         <form action="./sex?respondent=false" method="post" novalidate>
       {% endif %}
 
-         <span class="govuk-caption-xl">Equality monitoring</span>
+         
          <h1 class="govuk-heading-l">How well can you speak English?</h1>
 
         {{ govukRadios({
@@ -60,9 +60,9 @@
          <br>
         
          {% if data['respondent'] == 'true' %} 
-            <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link">Cancel and return to petition response</a>
+            <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link govuk-!-font-size-19">Cancel and return to petition response</a>
         {% else %}
-            <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link">Cancel and return to petition</a>
+            <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link govuk-!-font-size-19">Cancel and return to petition</a>
         {% endif %}
       
 

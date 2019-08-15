@@ -30,9 +30,11 @@
         <form action="./age?respondent=fasle&" method="post" novalidate>
       {% endif %}
 
-        <span class="govuk-caption-xl">Equality monitoring</span>
-        <h1 class="govuk-heading-l">Equality questions</h1>
-
+      <div class="govuk-panel govuk-panel--confirmation" style="background:#005ea5">
+        <h1 class="govuk-panel__title">
+          Equality questions (optional)
+        </h1>
+      </div>
 
         <p class="govuk-body">We’d like to ask you some questions about yourself to help us check that we’re treating people equally and fairly.</p>
         <p class="govuk-body">There are 9 questions.</p>
@@ -54,9 +56,9 @@
         <br>
 
        {% if data['respondent'] == 'true' %} 
-            <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link">Cancel and return to petition response</a>
+            <a href="https://div-pcq-prototype.herokuapp.com/aos/check-your-answers" class="govuk-link govuk-!-font-size-19">Return to petition response</a>
         {% else %}
-            <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link">Cancel and return to petition</a>
+            <a href="https://div-pcq-prototype.herokuapp.com/check-your-answers" class="govuk-link govuk-!-font-size-19">Return to petition</a>
         {% endif %}
 
       </form>

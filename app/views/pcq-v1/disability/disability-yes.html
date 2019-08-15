@@ -27,7 +27,7 @@
         <form action="/pcq-v1/applicant-disability-details" method="post" novalidate>
       {% endif %}
 
-        <span class="govuk-caption-xl">Equality monitoring</span>
+        
         <h1 class="govuk-heading-l">Do any of your conditions or illnesses reduce your ability to carry out day-to day activities?</h1>
 
         {{ govukRadios({
@@ -65,9 +65,9 @@
         <br>
          
          {% if data['respondent'] == 'true' %} 
-            <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link">Cancel and return to petition response</a>
+            <a href="https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers" class="govuk-link govuk-!-font-size-19">Cancel and return to petition response</a>
         {% else %}
-            <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link">Cancel and return to petition</a>
+            <a href="https://div-pcq-prototype-master.herokuapp.com/check-your-answers" class="govuk-link govuk-!-font-size-19">Cancel and return to petition</a>
         {% endif %}
 
 
