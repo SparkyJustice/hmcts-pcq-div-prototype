@@ -15,7 +15,7 @@ router.post('/pcq-v1/applicant/equality-opt-in', function (req, res) {
   if (equalityInformation == 'yes') {
     res.redirect('/pcq-v1/age?respondent=false&')
   } else {
-    res.redirect('https://div-pcq-prototype-master.herokuapp.com/check-your-answers')
+    res.redirect('https://div-pcq-prototype.herokuapp.com/check-your-answers')
   }
 
 })
@@ -26,7 +26,7 @@ router.post('/pcq-v1/respondent/equality-opt-in', function (req, res) {
   if (equalityInformation == 'yes') {
     res.redirect('/pcq-v1/age?respondent=true&')
   } else {
-    res.redirect('https://div-pcq-prototype-master.herokuapp.com/aos/check-your-answers')
+    res.redirect('https://div-pcq-prototype.herokuapp.com/aos/check-your-answers')
   }
 
 })
