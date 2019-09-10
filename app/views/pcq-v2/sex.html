@@ -45,7 +45,6 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% if data['respondent'] == 'true' %} 
-      session.serviceName = "Respond to a divorce application"
         <form action="./gender?respondent=true&" method="post" novalidate>  
       {% else %}
         <form action="./gender?respondent=false&" method="post" novalidate>
