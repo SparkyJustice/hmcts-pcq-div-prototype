@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
+{% block header %}
+{% if data['respondent'] == 'true' %} 
+   {{ govukHeader({
+  homepageUrl: "/",
+  serviceName: "Respond to a divorce application",
+  serviceUrl: "/",
+  containerClasses: "govuk-width-container"
+}) }}         
+{% else %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "Apply for a divorce",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endif %}
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+  tag: {
+    text: "beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {% if data['respondent'] == 'true' %} 
+        <form action="./sexual-orientation?respondent=true" method="post" novalidate>  
+      {% else %}
+        <form action="./sexual-orientation?respondent=false" method="post" novalidate>
+      {% endif %}
+
+        
+        {% set otherOtherHtml %}
+        {{ govukInput({
+          id: "gender-other",
+          name: "gender-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Please enter your gender"
+          }
+        }) }}
+      {% endset %}
+
+        
+        <h1 class="govuk-heading-l">Is your gender the same as the sex you were registered at birth?</h1>
+
+        {{ govukRadios({
+          idPrefix: "gender-same-as-birth",
+          name: "gender-same-as-birth",
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+                conditional: {
+                 html: otherOtherHtml
+                }
+            },
+            {
+              divider: "or"
+             },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+                <br>            
+            {{ govukButton({
+              text: "Continue to next question"
+            }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

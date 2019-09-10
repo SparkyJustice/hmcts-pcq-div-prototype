@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "textarea/macro.njk" import govukTextarea %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
+{% block header %}
+{% if data['respondent'] == 'true' %} 
+   {{ govukHeader({
+  homepageUrl: "/",
+  serviceName: "Respond to a divorce application",
+  serviceUrl: "/",
+  containerClasses: "govuk-width-container"
+}) }}         
+{% else %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "Apply for a divorce",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endif %}
+{% endblock %}
+
+{% block beforeContent %}
+ {{ govukPhaseBanner({
+  tag: {
+    text: "beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "./disability/disability-yes.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['respondent'] == 'true' %} 
+       <form action="../pregnancy?respondent=true&" method="post" novalidate>
+      {% else %}
+        <form action="../pregnancy?respondent=false&" method="post" novalidate>
+      {% endif %}
+
+        
+        {% set otherOtherHtml %}
+
+        {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            label: {
+              text: "Please give details of your disability"
+            }
+          }) }}
+
+        {% endset -%}
+
+         
+         <h1 class="govuk-heading-l">Do any of these conditions or illnesses affect you in any of the following areas?</h1>
+
+
+        {{ govukCheckboxes({
+          idPrefix: "disability-options",
+          name: "disability-options",
+          hint: {
+            text: "Select all that apply"
+          },
+          items: [
+           {
+              value: "vision",
+              text: "Vision",
+              hint: {
+                text: "For example blindness or partial sight"
+             }  
+            },
+            {
+              value: "hearing",
+              text: "Hearing",
+              hint: {
+                text: "For example deafness of partial hearing"
+              }
+            },
+            {
+              value: "mobility",
+              text: "Mobility",
+              hint: {
+                text: "For example walking short distances or climbing stairs"
+              }
+            },
+            {
+              value: "dexterity",
+              text: "Dexterity",
+              hint: {
+                text:"For example lifting and carrying objects, using a keyboard"
+              }
+            },
+            {
+              value: "Learning",
+              text: "Learning, understanding or concentrating"
+            },  
+            {
+              value: "memory",
+              text: "Memory"
+            },
+            {
+              value: "mental-health",
+              text: "Mental Health"
+            },
+            {
+              value: "stamina-breathing-fatigue",
+              text: "Stamina, breathing or fatigue"
+            },
+            {
+              value: "social-behaviour",
+              text: "Socially or behaviourally",
+              hint: {
+                text: "For example associated with autism, attention deficit disorder or Asperger's sysndrome"
+              }
+            },
+            {
+              value: "other",
+              text: "Other",
+                conditional: {
+                html: otherOtherHtml
+               }
+            },
+            {
+              value: "none-of-the-above",
+              text: "None of the above"
+            }
+            ]
+          }) }}
+        
+          <br>
+            
+          {{ govukButton({
+            text: "Continue to next question"
+          }) }}
+
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

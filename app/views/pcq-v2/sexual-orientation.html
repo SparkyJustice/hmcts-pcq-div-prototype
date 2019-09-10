@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}
+  Divorce Prototype
+{% endblock %}
+
+{% block header %}
+{% if data['respondent'] == 'true' %} 
+   {{ govukHeader({
+  homepageUrl: "/",
+  serviceName: "Respond to a divorce application",
+  serviceUrl: "/",
+  containerClasses: "govuk-width-container"
+}) }}         
+{% else %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "Apply for a divorce",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endif %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+  tag: {
+    text: "beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['respondent'] == 'true' %} 
+        <form action="./ethnicity?respondent=true" method="post" novalidate>  
+      {% else %}
+        <form action="./ethnicity?respondent=false" method="post" novalidate>
+      {% endif %}
+
+        {% set otherOtherHtml %}
+        {{ govukInput({
+          id: "sexual-orientation-other",
+          name: "sexual-orientation-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Please enter how you think of yourself"
+          }
+        }) }}
+        {% endset -%}
+
+         
+         <h1 class="govuk-heading-l">Which of the following best describes how you think of yourself?</h1>
+        
+        {{ govukRadios({
+          idPrefix: "what-is-your-sexual-orientation",
+          name: "what-is-your-sexual-orientation",
+          items: [
+            {
+              value: "heterosexual-straight",
+              text: "Heterosexual or straight"
+            },
+            {
+              value: "gay-lesbian",
+              text: "Gay or lesbian"
+            },
+            {
+              value: "bisexual",
+              text: "Bisexual"
+            },
+            {
+              value: "other",
+              text: "Other",
+                conditional: {
+                html: otherOtherHtml
+               }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+            <br>
+            
+            {{ govukButton({
+              text: "Continue to next question"
+            }) }}
+
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
