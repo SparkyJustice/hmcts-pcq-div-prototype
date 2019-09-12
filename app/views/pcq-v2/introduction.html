@@ -14,6 +14,7 @@
   Divorce Prototype
 {% endblock %}
 
+{# un comment to change the service name in the header
 {% block header %}
 {% if data['respondent'] == 'true' %} 
    {{ govukHeader({
@@ -31,6 +32,7 @@
   }) }}
 {% endif %}
 {% endblock %}
+#}
 
 {% block beforeContent %}
   {{ govukPhaseBanner({
@@ -49,15 +51,16 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <div class="govuk-panel govuk-panel--confirmation" style="background:#005ea5">
+      <div class="govuk-panel govuk-panel--confirmation" style="background:#005ea5, font-size:32px" >
         <h1 class="govuk-panel__title">
           Equality and diversity
         </h1>
         
-        <div class="govuk-panel__body" style="font-size:32px">
+        <div class="govuk-panel__body" style="font-size:24px">
           These are optional questions about you.
         </div>
-        <div class="govuk-panel__body" style="font-size:32px">        
+        <br>
+        <div class="govuk-panel__body" style="font-size:24px">        
           They will not be seen as part of your case or be shared with anyone else.
         </div>
       </div>
@@ -66,7 +69,8 @@
       <br> 
         {% if data['respondent'] == 'true' %} 
           {{ govukButton({
-            text: "Continue",
+            text: "Continue to the questions",
+            classes: "govuk-!-margin-right-1",
             href: "./age?respondent=true&"
           }) }}
 
@@ -79,7 +83,7 @@
         {% else %}
 
           {{ govukButton({
-            text: "Continue",
+            text: "Continue to the questions",
             classes: "govuk-!-margin-right-1",
             href: "./age?respondent=false&"
           }) }}

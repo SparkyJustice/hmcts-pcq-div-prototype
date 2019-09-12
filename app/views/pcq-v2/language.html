@@ -9,6 +9,7 @@
   Divorce Prototype
 {% endblock %}
 
+{# un comment to change the service name in the header
 {% block header %}
 {% if data['respondent'] == 'true' %} 
    {{ govukHeader({
@@ -26,6 +27,7 @@
   }) }}
 {% endif %}
 {% endblock %}
+#}
 
 {% block beforeContent %}
   {{ govukPhaseBanner({

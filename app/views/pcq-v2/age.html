@@ -10,7 +10,7 @@
   Divorce Prototype
 {% endblock %}
 
-{% block header %}
+{# un comment to change the service name in the header {% block header %}
 {% if data['respondent'] == 'true' %} 
    {{ govukHeader({
   homepageUrl: "/",
@@ -27,6 +27,7 @@
   }) }}
 {% endif %}
 {% endblock %}
+#}
 
 {% block beforeContent %}
   {{ govukPhaseBanner({
@@ -57,7 +58,7 @@
         id: "dob",
         namePrefix: "dob",
         hint: {
-          text: "For example, 12 11 2007"
+          text: "For example, 12 11 1987"
         }
       }) }}
 
