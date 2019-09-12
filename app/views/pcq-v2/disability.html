@@ -50,13 +50,17 @@
       {% else %}
         <form action="/pcq-v2/applicant-disability-answer" method="post" novalidate>
       {% endif %}
-      
-         
-         <h1 class="govuk-heading-l">Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?</h1>
 
         {{ govukRadios({
           idPrefix: "disability",
           name: "disability-information",
+          fieldset: {
+            legend: {
+              text: "Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
           items: [
             {
               value: "Yes",

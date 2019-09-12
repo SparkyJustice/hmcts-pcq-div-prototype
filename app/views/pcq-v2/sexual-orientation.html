@@ -61,13 +61,17 @@
           }
         }) }}
         {% endset -%}
-
-         
-         <h1 class="govuk-heading-l">Which of the following best describes how you think of yourself?</h1>
         
         {{ govukRadios({
           idPrefix: "what-is-your-sexual-orientation",
           name: "what-is-your-sexual-orientation",
+          fieldset: {
+            legend: {
+              text: "Which of the following best describes how you think of yourself?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
           items: [
             {
               value: "heterosexual-straight",

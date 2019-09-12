@@ -52,12 +52,16 @@
         <form action="./thank-you?respondent=false&" method="post" novalidate>
       {% endif %}
 
-        
-        <h1 class="govuk-heading-l">Are you pregnant or have you been pregnant in the last year?</h1>
-
         {{ govukRadios({
           idPrefix: "are-you-pregnant",
           name: "are-you-pregnant",
+          fieldset: {
+            legend: {
+              text: "Are you pregnant or have you been pregnant in the last year?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
           items: [
             {
               value: "yes",

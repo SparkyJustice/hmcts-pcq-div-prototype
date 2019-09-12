@@ -51,12 +51,16 @@
         <form action="/pcq-v2/applicant-disability-details" method="post" novalidate>
       {% endif %}
 
-        
-        <h1 class="govuk-heading-l">Do any of your conditions or illnesses reduce your ability to carry out day-to day activities?</h1>
-
         {{ govukRadios({
           idPrefix: "disability-yes",
           name: "disability-yes",
+          fieldset: {
+            legend: {
+              text: "Do any of your conditions or illnesses reduce your ability to carry out day-to-day activities?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
         
         items: [
             {

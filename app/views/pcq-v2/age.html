@@ -10,6 +10,8 @@
   Divorce Prototype
 {% endblock %}
 
+<!-- if you want to change the service name header depending on the type of user do it here, otherwise use the config.js serviceName -->
+
 {# un comment to change the service name in the header {% block header %}
 {% if data['respondent'] == 'true' %} 
    {{ govukHeader({
@@ -52,13 +54,18 @@
       {% endif %}
 
         
-        <h1 class="govuk-heading-l">What is your date of birth?</h1>
-
       {{ govukDateInput({
         id: "dob",
         namePrefix: "dob",
         hint: {
           text: "For example, 12 11 1987"
+        },
+        fieldset: {
+          legend: {
+            text: "What is your date of birth?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
         }
       }) }}
 

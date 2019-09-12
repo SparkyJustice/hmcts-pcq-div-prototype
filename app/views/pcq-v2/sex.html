@@ -51,12 +51,16 @@
         <form action="./gender?respondent=false&" method="post" novalidate>
       {% endif %}
 
-        
-        <h1 class="govuk-heading-l">What is your sex?</h1>
-
         {{ govukRadios({
           idPrefix: "what-is-your-sex",
           name: "what-is-your-sex",
+          fieldset: {
+            legend: {
+              text: "What is your sex?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
           items: [
             {
               value: "male",
@@ -70,7 +74,7 @@
               divider: "or"
             },
             {
-              value: "prefer-not-to-say",
+              value: "prefer not to say",
               text: "Prefer not to say"
             }
           ]

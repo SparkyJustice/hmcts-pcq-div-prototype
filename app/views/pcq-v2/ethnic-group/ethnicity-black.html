@@ -65,12 +65,16 @@
         }) }}
       {% endset -%}
 
-        
-        <h1 class="govuk-heading-l">Which one best describes your Black, African, Black British or Caribbean background?</h1>
-
-      {{ govukRadios({
+        {{ govukRadios({
         idPrefix: "ethnic-group",
         name: "ethnic-group",
+        fieldset: {
+            legend: {
+              text: "Which one best describes your Black, African, Black British or Caribbean background?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
         items: [
           {
             text: "African"

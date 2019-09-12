@@ -63,12 +63,16 @@
         {% endset %}
         
 
-         
-         <h1 class="govuk-heading-l">What is your main language?</h1>
-
         {{ govukRadios({
           idPrefix: "english-language",
           name: "english-language",
+          fieldset: {
+            legend: {
+              text: "What is your main language?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
           items: [
         
             {

@@ -62,13 +62,17 @@
           }
         }) }}
       {% endset %}
-
-        
-        <h1 class="govuk-heading-l">Is your gender the same as the sex you were registered at birth?</h1>
-
+      
         {{ govukRadios({
           idPrefix: "gender-same-as-birth",
           name: "gender-same-as-birth",
+          fieldset: {
+            legend: {
+              text: "Is your gender the same as the sex you were registered at birth?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
 
           items: [
             {

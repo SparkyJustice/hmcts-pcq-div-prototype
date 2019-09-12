@@ -66,12 +66,17 @@
           }
         }) }}
       {% endset -%}
-         
-         <h1 class="govuk-heading-l">Which one best describes your background?</h1>
 
       {{ govukRadios({
         idPrefix: "ethnic-group",
         name: "ethnic-group",
+        fieldset: {
+            legend: {
+              text: "Which one best describes your background?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
         items: [
           {
             text: "Arab"

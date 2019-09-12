@@ -63,14 +63,17 @@
           }
         }) }}
         {% endset -%}
-    
-
         
-        <h1 class="govuk-heading-l">What is your religion?</h1>
-           
         {{ govukRadios({
           idPrefix: "religion",
           name: "religion",
+          fieldset: {
+            legend: {
+              text: "What is your religion?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
           items: [
             {
               value: "no-religion",

@@ -66,15 +66,18 @@
 
         {% endset -%}
 
-         
-         <h1 class="govuk-heading-l">Do any of these conditions or illnesses affect you in any of the following areas?</h1>
-
-
         {{ govukCheckboxes({
           idPrefix: "disability-options",
           name: "disability-options",
           hint: {
             text: "Select all that apply"
+          },
+          fieldset: {
+            legend: {
+              text: "Do any of these conditions or illnesses affect you in any of the following areas?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
           },
           items: [
            {
@@ -106,7 +109,7 @@
               }
             },
             {
-              value: "Learning",
+              value: "learning",
               text: "Learning, understanding or concentrating"
             },  
             {
@@ -125,7 +128,7 @@
               value: "social-behaviour",
               text: "Socially or behaviourally",
               hint: {
-                text: "For example associated with autism, attention deficit disorder or Asperger's sysndrome"
+                text: "For example associated with autism, attention deficit disorder or Asperger's syndrome"
               }
             },
             {

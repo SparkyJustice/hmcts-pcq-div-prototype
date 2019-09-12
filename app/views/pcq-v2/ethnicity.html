@@ -51,13 +51,16 @@
 
       {% endif %}
 
-        
-        <h1 class="govuk-heading-l">What is your ethnic group?</h1>
-
-
       {{ govukRadios({
         idPrefix: "ethnic-group",
         name: "ethnic-group",
+        fieldset: {
+            legend: {
+              text: "What is your ethnic group?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
         items: [
           {
               value: "Asian or Asian British",

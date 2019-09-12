@@ -50,12 +50,17 @@
         <form action="./sex?respondent=false" method="post" novalidate>
       {% endif %}
 
-         
-         <h1 class="govuk-heading-l">How well can you speak English?</h1>
-
         {{ govukRadios({
           idPrefix: "english-level",
           name: "english-level",
+          fieldset: {
+            legend: {
+              text: "How well can you speak English?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },          
+          
           items: [
             {
               value: "very-well",
