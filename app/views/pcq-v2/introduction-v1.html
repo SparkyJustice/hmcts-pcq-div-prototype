@@ -1,14 +1,14 @@
 
 {% extends "layout.html" %}
-{% include "includes/cookie-banner.html" %}
+
 
 {% from "input/macro.njk" import govukInput %}
 {% from "fieldset/macro.njk" import govukFieldset %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "details/macro.njk" import govukDetails %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
+{% include "includes/cookie-banner.html" %}
 {% from "back-link/macro.njk" import govukBackLink %}
-{% from "panel/macro.njk" import govukPanel %}
 
 {% block pageTitle %}
   Divorce Prototype
@@ -51,25 +51,23 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {# change color of panel in nunjucks 
-      {{ govukPanel({
-        backgroundColor: "#005ea5",
-        titleText: "Application complete",
-        html: "Your reference number<br><strong>HDJ2123F</strong>"
-      }) }}
-      #}
-        {% if data['respondent'] == 'true' %} 
-        <div class="govuk-panel govuk-panel--confirmation" style="background-color:#005ea5" >
-        <h1 class="govuk-panel__title" style="font-size:38px">
-          Equality and diversity questions
+      <div class="govuk-panel govuk-panel--confirmation" style="background:#005ea5, font-size:32px" >
+        <h1 class="govuk-panel__title">
+          Equality and diversity
         </h1>
+        
+        <div class="govuk-panel__body" style="font-size:24px">
+          These are optional questions about you.
+        </div>
+        <br>
         <div class="govuk-panel__body" style="font-size:24px">        
-          The next questions are optional and are not part of your divorce response
+          They will not be seen as part of your case or be shared with anyone else.
         </div>
       </div>
-      <p class="govuk-body">Your answers will help us check we are treating people fairly and equally.</p>
-      <p class="govuk-body">Find out how we use this information in <a href="privacy-policy">our privacy policy.</a></p>
+      <p class="govuk-body">We use this information to make sure we treat people fairly.</p>
+      <p class="govuk-body">Link to <a href="privacy-policy">privacy policy</a></p>
       <br> 
+        {% if data['respondent'] == 'true' %} 
           {{ govukButton({
             text: "Continue to the questions",
             classes: "govuk-!-margin-right-1",
@@ -83,17 +81,6 @@
           }) }}
 
         {% else %}
-        <div class="govuk-panel govuk-panel--confirmation" style="background-color:#005ea5" >
-        <h1 class="govuk-panel__title" style="font-size:38px">
-          Equality and diversity questions
-        </h1>
-        <div class="govuk-panel__body" style="font-size:24px">        
-          The next questions are optional and are not part of your divorce application
-        </div>
-      </div>
-      <p class="govuk-body">Your answers will help us check we are treating people fairly and equally.</p>
-      <p class="govuk-body">Find out how we use this information in <a href="privacy-policy">our privacy policy.</a></p>
-      <br> 
 
           {{ govukButton({
             text: "Continue to the questions",

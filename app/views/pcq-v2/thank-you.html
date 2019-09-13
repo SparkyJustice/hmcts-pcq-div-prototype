@@ -45,28 +45,38 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
- 
-      <h1 class="govuk-heading-l">That’s the end of the equality questions</h1>
-      <p class="govuk-body">Thanks for taking part.</p>
-
-      <br>
-
-        {% if data['respondent'] == 'true' %} 
+      {% if data['respondent'] == 'true' %} 
+        <div class="govuk-panel govuk-panel--confirmation" style="background-color:#005ea5" >
+        <h1 class="govuk-panel__title" style="font-size:38px">
+          You have answered the equality questions
+        </h1>
+        <div class="govuk-panel__body" style="font-size:24px">        
+          Now you need to finsh your divorce response
+        </div>
+      </div>
+    
           {{ govukButton({
-            text: "Finish divorce response",
+            text: "Finish your divorce response",
             href: "https://div-pcq-prototype.herokuapp.com/aos/check-your-answers"
            }) }}
-         
-        {% else %}
-           {{ govukButton({
-            text: "Finish divorce application",
+
+      {% else %}
+       <div class="govuk-panel govuk-panel--confirmation" style="background-color:#005ea5" >
+        <h1 class="govuk-panel__title" style="font-size:38px">
+          You have answered the equality questions
+        </h1>
+        <div class="govuk-panel__body" style="font-size:24px">        
+          Now you need to finsh your divorce response
+        </div>
+      </div>
+      <br> 
+            {{ govukButton({
+            text: "Finish your divorce application",
             href: "https://div-pcq-prototype.herokuapp.com/check-your-answers"
            }) }}
-         
-        {% endif %}
 
-      <br>  
-     
+      {% endif %}
+ 
     </div>
 </div>
 
