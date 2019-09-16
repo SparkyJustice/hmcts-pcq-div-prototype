@@ -18,17 +18,11 @@
 {% block header %}
 {% if data['respondent'] == 'true' %} 
    {{ govukHeader({
-  homepageUrl: "/",
-  serviceName: "Respond to a divorce application",
-  serviceUrl: "/",
-  containerClasses: "govuk-width-container"
-}) }}         
+      serviceName: "Respond to a divorce application",
+    }) }}         
 {% else %}
   {{ govukHeader({
-    homepageUrl: "/",
     serviceName: "Apply for a divorce",
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container"
   }) }}
 {% endif %}
 {% endblock %}
@@ -51,13 +45,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {# change color of panel in nunjucks 
-      {{ govukPanel({
-        backgroundColor: "#005ea5",
-        titleText: "Application complete",
-        html: "Your reference number<br><strong>HDJ2123F</strong>"
-      }) }}
-      #}
+      
       {% if data['respondent'] == 'true' %} 
         <div class="govuk-panel govuk-panel--confirmation" style="background-color:#005ea5" >
         <h1 class="govuk-panel__title" style="font-size:38px">
@@ -107,6 +95,12 @@
             href: "https://div-pcq-prototype.herokuapp.com/check-your-answers"
           }) }}
       {% endif %}
+
+    <br>
+    {{ govukDetails({
+          summaryText: "Why we are asking these questions",
+          text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+    }) }}
 
     </div>
 </div>
