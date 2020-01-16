@@ -1,0 +1,81 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Equality questions - ethnicity white
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form action="/ethnicity-type-next-q" method="post" novalidate>
+
+      {% set whiteOtherHtml %}
+        {{ govukInput({
+          id: "ethnicity-white-other",
+          name: "ethnicity-white-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            value: "your-white-background",
+            text: "Your White background (optional)"
+          }
+        }) }}
+        {% endset -%}
+       
+        {{ govukRadios({
+          idPrefix: "ethnic-group",
+          name: "ethnic-group",
+          fieldset: {
+            legend: {
+              text: "Which one best describes your White background?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "british-english-northern-irish-scottish-or-Welsh",
+              text: "English, Welsh, Scottish, Northern Irish or British"
+            },
+            {
+              value: "irish",
+              text: "Irish"
+            },
+            {
+              value: "irish-traveller-or-gypsy",
+              text: "Gypsy or Irish Traveller"
+            },
+            {
+              value: "another-whitebbackground",
+              text: "Another White background",
+              conditional: {
+                html: whiteOtherHtml
+              }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+            <br>
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+    <br>
+    {{ govukDetails({
+          summaryText: "Why we are asking this question",
+          text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+    }) }}
+
+      </form>
+    </div>
+</div>
+
+{% endblock %}

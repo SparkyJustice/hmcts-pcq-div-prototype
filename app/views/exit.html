@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Equality questions - submit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation" style="background-color:#005ea5" >
+        <h1 class="govuk-panel__title" style="font-size:38px">
+          You have answered the equality questions
+        </h1>
+        <div class="govuk-panel__body" style="font-size:24px">        
+        The next steps are to check your {{serviceUserAction}} details
+        </div>
+      </div>
+      <br>
+
+      <a id="returnToService" class="govuk-button govuk-button" data-module="govuk-button" href="{{serviceReturnUrl}}">
+        Continue to the next steps
+      </a>
+    </div>
+</div>
+
+{% endblock %}

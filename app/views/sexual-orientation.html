@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Equality questions - sexual orientation
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/sexual-orientation-next-q" method="post" novalidate>
+
+        {% set otherOtherHtml %}
+        {{ govukInput({
+          id: "sexual-orientation-other",
+          name: "sexual-orientation-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            value: "how-you-think-of-yourself",
+            text: "Please enter how you think of yourself"
+          }
+        }) }}
+        {% endset -%}
+        
+        {{ govukRadios({
+          idPrefix: "what-is-your-sexual-orientation",
+          name: "what-is-your-sexual-orientation",
+          fieldset: {
+            legend: {
+              text: "Which of the following best describes how you think of yourself?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "heterosexual-straight",
+              text: "Heterosexual or straight"
+            },
+            {
+              value: "gay-lesbian",
+              text: "Gay or lesbian"
+            },
+            {
+              value: "bisexual",
+              text: "Bisexual"
+            },
+            {
+              value: "other",
+              text: "Other",
+                conditional: {
+                html: otherOtherHtml
+               }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+            <br>
+            
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+    <br>
+    {{ govukDetails({
+          summaryText: "Why we are asking this question",
+          text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+    }) }}
+
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

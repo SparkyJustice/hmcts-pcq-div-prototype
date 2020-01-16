@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Equality questions - religion
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="/religion-next-q" method="post" novalidate>
+
+        {% set otherOtherHtml %}
+        {{ govukTextarea({
+          id: "religion-other",
+          name: "religion-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "your-religion",
+            text: "Please describe your religion"
+          }
+        }) }}
+        {% endset -%}
+        
+        {{ govukRadios({
+          idPrefix: "religion",
+          name: "religion",
+          fieldset: {
+            legend: {
+              text: "What is your religion?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "no-religion",
+              text: "No religion"
+            },
+            {
+              value: "christian",
+              text: "Christian (all denominations)"
+            },
+            {
+              value: "buddhist",
+              text: "Buddhist"
+            },
+            {
+              value: "hindu",
+              text: "Hindu"
+            },
+            {
+              value: "jewish",
+              text: "Jewish"
+            },
+            {
+              value: "muslim",
+              text: "Muslim"
+            },
+            {
+              value: "sikh",
+              text: "Sikh"
+            },
+            {
+              value: "other",
+              text: "Any other religion",
+                conditional: {
+                html: otherOtherHtml
+               }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }} 
+        <br>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+    <br>
+    {{ govukDetails({
+          summaryText: "Why we are asking this question",
+          text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+    }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

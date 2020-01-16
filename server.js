@@ -9,10 +9,12 @@ const nunjucks = require('nunjucks')
 const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 const cookieParser = require('cookie-parser')
+const url = require('url')
 
 // Run before other code to make sure variables from .env are available
-dotenv.config()
-
+// JHS 091019 use a different file for dotenv, instead of .env
+dotenv.config({path: './env-variables.env'})
+// dotenv.config()
 // Local dependencies
 const middleware = [
   require('./lib/middleware/authentication/authentication.js'),
@@ -60,6 +62,19 @@ var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreDat
 var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
+
+
+//JHS 091019 set up user defined configuration variables in the following order heroku config variables, the .env-variables file and config.js 
+
+var serviceReturnUrlA = process.env.SERVICE_RETURN_URL_A || config.serviceReturnUrlA
+var serviceReturnUrlB = process.env.SERVICE_RETURN_URL_B || config.serviceReturnUrlB
+var serviceUserTypeA = process.env.SERVICE_USER_TYPE_A || config.serviceUserTypeA
+var serviceUserTypeB = process.env.SERVICE_USER_TYPE_B || config.serviceUserTypeB
+
+
+// JHS 131019 make questionOrder global so can access it in routes
+
+questionOrder = config.questionOrder
 
 useHttps = useHttps.toLowerCase()
 
@@ -178,6 +193,14 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
+
+// JHS 091019 add variables for originating service
+app.locals.questionOrder = questionOrder
+app.locals.serviceUserTypeA = serviceUserTypeA
+app.locals.serviceUserTypeB = serviceUserTypeB
+app.locals.serviceReturnUrlA = serviceReturnUrlA
+app.locals.serviceReturnUrlB = serviceReturnUrlB
+
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig()
 

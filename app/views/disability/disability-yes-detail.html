@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Equality questions - disability details
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+       <form action="/disability-details-next-q" method="post" novalidate>
+        
+        {% set otherOtherHtml %}
+
+        {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            label: {
+              text: "Please give details of your disability"
+            }
+          }) }}
+
+        {% endset -%}
+
+        {{ govukCheckboxes({
+          idPrefix: "disability-options",
+          name: "disability-options",
+          hint: {
+            text: "Select all that apply"
+          },
+          fieldset: {
+            legend: {
+              text: "Do any of these conditions or illnesses affect you in any of the following areas?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+           {
+              value: "vision",
+              text: "Vision",
+              hint: {
+                text: "For example blindness or partial sight"
+             }  
+            },
+            {
+              value: "hearing",
+              text: "Hearing",
+              hint: {
+                text: "For example deafness of partial hearing"
+              }
+            },
+            {
+              value: "mobility",
+              text: "Mobility",
+              hint: {
+                text: "For example walking short distances or climbing stairs"
+              }
+            },
+            {
+              value: "dexterity",
+              text: "Dexterity",
+              hint: {
+                text:"For example lifting and carrying objects, using a keyboard"
+              }
+            },
+            {
+              value: "learning",
+              text: "Learning, understanding or concentrating"
+            },  
+            {
+              value: "memory",
+              text: "Memory"
+            },
+            {
+              value: "mental-health",
+              text: "Mental Health"
+            },
+            {
+              value: "stamina-breathing-fatigue",
+              text: "Stamina, breathing or fatigue"
+            },
+            {
+              value: "social-behaviour",
+              text: "Socially or behaviourally",
+              hint: {
+                text: "For example associated with autism, attention deficit disorder or Asperger's syndrome"
+              }
+            },
+            {
+              value: "other",
+              text: "Other",
+                conditional: {
+                html: otherOtherHtml
+               }
+            },
+            {
+              value: "none-of-the-above",
+              text: "None of the above"
+            }
+            ]
+          }) }}
+        
+          <br>
+            
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    <br>
+    {{ govukDetails({
+          summaryText: "Why we are asking this question",
+          text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+    }) }}
+
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

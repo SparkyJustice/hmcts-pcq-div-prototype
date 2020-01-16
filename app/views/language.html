@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Equality questions - language
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/language-next-q" method="post" novalidate>
+
+        {% set otherOtherHtml %}
+        {{ govukInput({
+          id: "english-language-other",
+          name: "english-language-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            value: "your-main-language",
+            text: "Enter your main language (including British Sign Language)"
+          }
+        }) }}
+        {% endset %}
+        
+
+        {{ govukRadios({
+          idPrefix: "english-language",
+          name: "english-language",
+          fieldset: {
+            legend: {
+              text: "What is your main language?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+        
+            {
+              value: "english-or-welsh",
+              text: "English or Welsh"
+            },
+            {
+              value: "other",
+              text: "Other",
+              conditional: {
+              html: otherOtherHtml
+              }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+        <br>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+    <br>
+    {{ govukDetails({
+          summaryText: "Why we are asking this question",
+          text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+    }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
