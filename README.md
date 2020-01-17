@@ -28,7 +28,7 @@ For Divorce the marriage question has been removed
 
 ## Environment variables ##
 
-The service is deployed with Heroku and uses process.env variables to determine the return service url and the type of user. These fields are also defined in the env-variables.env file for development testing. Which variables to use is determined in server.js by checking the environment and in routes.js for the logic shown below.
+The service is deployed with Heroku and uses Heroku process.env variables to determine the return service url and the type of user. These fields are also defined in the env-variables.env file for development testing. Which variables to use is determined in server.js by checking the environment and in routes.js for the logic shown below.
 
 The SERVICE_USER_TYPE_A is used to define the type of user and which return url (serviceReturnUrl) is used. If there is only one user type then there will be only one return url SERVICE_RETURN_URL_A. In this case leave SERVICE_USER_TYPE_B and SERVICE_RETURN_URL_B blank.
 
@@ -36,21 +36,19 @@ If there are two user types then the user type is passed to the PCQs via a query
 
 The serviceUserAction is used to display the action of the user in the information panel on the introduction page e.g. application
 "Your answers won't affect your {{serviceUserAction}}."  This is determined (hard coded with a switch command) in the routes.js file
-        case 'applicant':
-          serviceUserAction = 'application'
-          break
-        case 'appellant':
-          serviceUserAction = 'appeal'        
-          break
-        case 'claimant':
-          serviceUserAction = 'claim'
-          break
-        case 'respondent':
-          serviceUserAction = 'response'
-          break
-        case 'defendant':
-          serviceUserAction = 'case'
-          break
-        default:
-          serviceUserAction = 'case'
-          break
+applicant - application
+appellant - appeal
+claimant - claim
+respondent - response
+defendant - case
+default - case
+
+For Divorce following env_variables are used:
+SERVICE_USER_TYPE_A = 'applicant'
+SERVICE_USER_TYPE_B = 'respondent'
+
+Set the return page, this will determine the destination when returning to the originating service
+
+SERVICE_RETURN_URL_A = 'https://div-pcq-prototype.herokuapp.com/check-your-answers'
+SERVICE_RETURN_URL_B = 'https://div-pcq-prototype.herokuapp.com/aos/check-your-answers'
+
