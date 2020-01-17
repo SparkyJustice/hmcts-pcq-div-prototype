@@ -43,9 +43,13 @@ respondent - response
 defendant - case
 default - case
 
-For Divorce the following env_variables are used:
+### Divorce env_variables ###
+
 SERVICE_USER_TYPE_A = 'applicant'
+
 SERVICE_USER_TYPE_B = 'respondent'
+
 SERVICE_RETURN_URL_A = 'https://div-pcq-prototype.herokuapp.com/check-your-answers'
+
 SERVICE_RETURN_URL_B = 'https://div-pcq-prototype.herokuapp.com/aos/check-your-answers'
 
