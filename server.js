@@ -72,7 +72,13 @@ var serviceUserTypeA = process.env.SERVICE_USER_TYPE_A || config.serviceUserType
 var serviceUserTypeB = process.env.SERVICE_USER_TYPE_B || config.serviceUserTypeB
 
 
-// JHS 131019 make questionOrder global so can access it in routes
+// JHS 131019 convert questionOrder to lower case and make it global so can access it in routes
+
+config.questionOrder.forEach(makeLowerCase);
+
+function makeLowerCase(item,index) {
+    config.questionOrder[index] = item.toLowerCase();
+};
 
 questionOrder = config.questionOrder
 

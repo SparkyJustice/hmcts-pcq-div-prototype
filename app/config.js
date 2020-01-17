@@ -4,10 +4,13 @@
 
 module.exports = {
 
-  // Set the order of the questions, 
-  // remove any not required, the full list is  questionOrder: ['age','language','sex','gender','sexual-orientation','marriage','ethnicity','religion','disability','pregnancy','exit']
-  // keep lower case as these are the file names
+  // Set the order of the questions and remove any not required
+  // the recommended order for the full list is - 
+  // questionOrder: ['age','language','sex','gender','sexual-orientation','marriage','ethnicity','religion','disability','pregnancy','exit']
+
   // Leave exit as the last page
+
+  // for divorce marriage has been removed from the list
 
   questionOrder: [
   'age',
@@ -15,30 +18,11 @@ module.exports = {
   'sex',
   'gender',
   'sexual-orientation',
-  'marriage',
   'ethnicity',
   'religion',
   'disability',
   'pregnancy',
   'exit'],
-
-  // Set values for the originating service, these are used if the process.env are not set 
-
-  // Set the type of user e.g. appellant, applicant, respondent, defendant. 
-  // probate is either single executor or multiple exectors, used for return URL 
-  // serviceUserTypeA: 'single',
-  // serviceUserTypeB: 'multiple',
-
-  // Set the return page, this will determine the destination when returning to the originating service
-  // if there are options based on the serviceUserType the correct url is selected in server.js. 
-  // if query string is passed this will be compared with the service userType to determine the return url
-
-  // serviceReturnUrlA: 'https://probate-pcq-prototype.herokuapp.com/tasklist/review-and-confirm',
-  // serviceReturnUrlB: '',
-
-
-  // Set the type of user action e.g. application, response, appeal. This will determine the text on the wrapper pages
-  // serviceUserAction:'application',
 
   // Service name used in header. Eg: 'Renew your passport'
   serviceName: 'Equality and diversity questions',

@@ -92,7 +92,6 @@ router.get('/age', function(req, res) {
   var thisQ = 'age'
   for (var i = 0; i < questionOrder.length; i++) {
      if (questionOrder[i] == thisQ) {
-      console.log('***** age backlink ********')
       // if this is the first page make the backLink the introduction
       if (i==0) {
         req.app.locals.backLink = './introduction'
@@ -112,15 +111,12 @@ router.post('/age-next-q', function (req, res) {
 
   var nextQ
   var thisQ = 'age'
-    console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
   for (var i = 0; i < questionOrder.length; i++) {
      if (questionOrder[i] == thisQ) {
-      console.log('questionOrder nextQ' + questionOrder[i])
       nextQ = questionOrder[i + 1]
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
     res.redirect('./' + nextQ)
 
 })
@@ -165,7 +161,6 @@ router.post('/language-next-q', function (req, res) {
         break
       }  
     }
-    console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
     res.redirect('./' + nextQ)
   }
 })
@@ -190,7 +185,6 @@ router.post('/english-level-next-q', function (req, res) {
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
 
     res.redirect('./' + nextQ) // going up a level to the nextQ
 
@@ -228,7 +222,6 @@ router.post('/sex-next-q', function (req, res) {
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
 
     res.redirect('./' + nextQ) 
 
@@ -266,7 +259,6 @@ router.post('/gender-next-q', function (req, res) {
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
 
     res.redirect('./' + nextQ)
 
@@ -304,7 +296,6 @@ router.post('/sexual-orientation-next-q', function (req, res) {
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
 
     res.redirect('./' + nextQ)
 
@@ -371,7 +362,6 @@ router.get('/ethnicity', function(req, res) {
 
 router.post('/ethnicity-next-q', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
-    console.log ('ethnic group ' + ethnicGroup)
 
   if (ethnicGroup == "white") {
     req.app.locals.backLink = '../ethnicity'
@@ -408,7 +398,6 @@ router.post('/ethnicity-type-next-q', function (req, res) {
 
   var nextQ
   var thisQ = 'ethnicity'
-    console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
   for (var i = 0; i < questionOrder.length; i++) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
